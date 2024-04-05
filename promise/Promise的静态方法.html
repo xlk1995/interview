@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise的静态方法</title>
+  </head>
+  <body></body>
+
+  <script>
+    function fetchData(pageNum) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (Math.random() < 0.5) {
+            let arr = [];
+            for (let index = 0; index < 10; index++) {
+              arr.push({
+                name: `张${pageNum}`,
+                id: `${Math.random()}-${pageNum}`,
+              });
+            }
+            resolve(arr);
+          } else {
+            reject(`获取${pageNum}失败`);
+          }
+        }, 100);
+      });
+    }
+
+    // 获取1-10页的数据，全部返回成功获取， 有失败打印失败信息
+    const allP = new Array(10)
+      .fill(1)
+      .map((item, index) => index + 1)
+      .map((item) => fetchData(item));
+
+    // Promise.all(allP)
+    //   .then((res) => {
+    //     console.log(res.flat());
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    // 获取1-10页的数据，只获取成功的数据（返回第一个成功的数据）, 全部失败返回原因
+
+    // Promise.any(allP)
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err, "=");
+    //   });
+
+    //  处理第一个完成的状态，无论成功还是失败
+    // Promise.race(allP)
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    // });
+
+    // 获取成功的数据，总是成功
+    Promise.allSettled(allP).then((res) => {
+      console.log(res.filter((item) => item.status === "fulfilled").flat());
+    });
+  </script>
+</html>
