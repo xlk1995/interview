@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise后续的处理</title>
+  </head>
+  <body>
+    如果后一个对前一个没有处理，promise状态就保持和前一个一样的状态
+  </body>
+
+  <script>
+    const p1 = new Promise((resolve, reject) => {
+      resolve(111);
+    });
+
+    const p2 = p1.then((res) => {});
+    p2.then((res) => {
+      console.log(res);
+    });
+  </script>
+</html>
