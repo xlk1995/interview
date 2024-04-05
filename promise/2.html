@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise的执行顺序</title>
+  </head>
+  <body></body>
+  <script>
+    setTimeout(() => {
+      console.log("11111");
+    });
+    setTimeout(() => {
+      console.log("2222");
+    });
+    const p1 = new Promise((resolve) => {
+      console.log("p1");
+      setTimeout(() => {
+        console.log("p1 s");
+      });
+      resolve("p-----");
+    });
+    const p2 = new Promise((resolve) => {
+      console.log("p2");
+      setTimeout(() => {
+        console.log("p2 s");
+      });
+      resolve("p=====");
+    });
+    console.log(p1, "p11111");
+    console.log(p2, "p2222");
+    p1.then((res) => console.log(res));
+    p2.then((res) => console.log(res));
+  </script>
+</html>
