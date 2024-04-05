@@ -2,6 +2,26 @@ const PENDING = "pending";
 const FULFILLED = "fulfilled";
 const REJECT = "reject";
 
+/**
+ * 运行一个微任务队列
+ * 把传递的函数放入到
+ * @param  callback
+ */
+function runMicroTask(callback) {
+  if (globalThis.process && globalThis.process.nextTick) {
+    process.nextTick(callback);
+  } else if (globalThis.MutationObserver) {
+    const p = document.createElement("p");
+    const observer = globalThis.MutationObserver(callback);
+    observer.observe(p, {
+      childList: true,
+    });
+    p.innerHTML = "1";
+  } else {
+    setTimeout(callback, 0);
+  }
+}
+
 class MyPromise {
   _state; // 状态
   _value; // 数据
