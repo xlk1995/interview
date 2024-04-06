@@ -148,60 +148,60 @@
 
 /************* 第九题 */
 
-// var a;
-// var b = new Promise((resolve) => {
-//   console.log("promise1");
-//   setTimeout(() => {
-//     resolve();
-//   }, 1000);
-// })
-//   .then(() => {
-//     console.log("promise2");
-//   })
-//   .then(() => {
-//     console.log("promise3");
-//   })
-//   .then(() => {
-//     console.log("promise4");
-//   });
+var a;
+var b = new Promise((resolve) => {
+  console.log("promise1");
+  setTimeout(() => {
+    resolve();
+  }, 1000);
+})
+  .then(() => {
+    console.log("promise2");
+  })
+  .then(() => {
+    console.log("promise3");
+  })
+  .then(() => {
+    console.log("promise4");
+  });
 
-// a = new Promise(async (resolve, reject) => {
-//   console.log(a);
-//   await b;
-//   console.log(a);
-//   console.log("after1");
-//   await a;
-//   resolve(true);
-//   console.log("after2");
-// });
+a = new Promise(async (resolve, reject) => {
+  console.log(a);
+  await b;
+  console.log(a);
+  console.log("after1");
+  await a;
+  resolve(true);
+  console.log("after2");
+});
 
-// console.log("end");
+console.log("end");
 
 /************ 第十题 */
 
-async function async1() {
-  console.log("async1 start");
-  await async2();
-  console.log("async1 end");
-}
+// async function async1() {
+//   console.log("async1 start");
+//   await async2();
+//   console.log("async1 end");
+// }
 
-async function async2() {
-  console.log("sync2");
-}
+// async function async2() {
+//   console.log("sync2");
+// }
 
-console.log("script start");
+// console.log("script start");
 
-setTimeout(() => {
-  console.log("setTimeout");
-}, 0);
+// setTimeout(() => {
+//   console.log("setTimeout");
+// }, 0);
 
-async1();
+// async1();
 
-new Promise((resolve) => {
-  console.log("promise1");
-  resolve();
-}).then(() => {
-  console.log("promise2");
-});
+// new Promise((resolve) => {
+//   console.log("promise1");
+//   resolve();
+// }).then(() => {
+//   console.log("promise2");
+// });
 
-console.log("script end ");
+// console.log("script end ");
