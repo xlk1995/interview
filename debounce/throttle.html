@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      html,
+      body {
+        height: 500%;
+        background-color: rosybrown;
+      }
+    </style>
+  </head>
+  <body></body>
+  <script src="./throttle.js"></script>
+  <script>
+    function handleScroll() {
+      console.log("ok");
+    }
+    window.onscroll = throttle(handleScroll);
+  </script>
+</html>
