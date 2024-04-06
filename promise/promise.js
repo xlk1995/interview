@@ -166,7 +166,7 @@ class MyPromise {
     this._value = value;
     this._runHandlers(); // 状态变化，执行队列
   }
-
+  debounce;
   /**
    * 标记当前任务完成
    * @param {any} data 任务完成的相关数据
@@ -174,7 +174,6 @@ class MyPromise {
   _resolve(data) {
     this._changeState(FULFILLED, data);
   }
-
   /**
    * 标记当前任务失败
    * @param {any} reason 任务失败的相关数据
